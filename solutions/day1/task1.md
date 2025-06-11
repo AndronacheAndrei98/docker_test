@@ -16,7 +16,7 @@ ERROR: failed to solve: no build stage in current context
 
 ## Solution
 Upon inspecting the Dockerfile, I could observe that there is no "FROM" line.
-I looked for the base docker image for "Nginx" in DockerHub and added the following line at the beginning:
+I looked for the base docker image for "nginx" in DockerHub and added the following line at the beginning:
 "
 FROM nginx
 "
@@ -132,4 +132,5 @@ PS C:\Users\ZZ03GR826\Documents\GitHub\network_test\config\configDB\assignment2\
 ```
 
 ## Lessons Learned
-You should always check the validity of Dockerfiles, meaning that all "parts" should be there.
+You should always check the validity of Dockerfiles before thinking of more "advanced" issues.
+Basically all "parts" should be there.
