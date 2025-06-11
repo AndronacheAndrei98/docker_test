@@ -1,4 +1,4 @@
-# Day 1 - Task 1 Solution
+# Day 1 - Task 2 Solution
 
 ## Issue Found
 After running the container, page is not up.
@@ -9,9 +9,9 @@ The run command from the readme.md maps 8080(local):8080(inside container) where
 For it to run it should be 8080(local):80(inside container).
 After that it worked fine.
 I also added the following:
-"
+```bash
 EXPOSE 80
-"
+```
 This is more for documentatian, since the "EXPOSE 80" does not directly do anything.
 
 ## Commands Used

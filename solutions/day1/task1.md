@@ -2,7 +2,7 @@
 
 ## Issue Found
 I tried to build the Dockerfile buit it gave the following error:
-"
+```bash
 Dockerfile:4
 --------------------
    2 |
@@ -12,14 +12,15 @@ Dockerfile:4
    6 |     COPY index.html .
 --------------------
 ERROR: failed to solve: no build stage in current context
-"
+```
 
 ## Solution
 Upon inspecting the Dockerfile, I could observe that there is no "FROM" line.
 I looked for the base docker image for "nginx" in DockerHub and added the following line at the beginning:
-"
+```bash
 FROM nginx
-"
+```
+
 Then it worked fine.
 
 ## Commands Used
