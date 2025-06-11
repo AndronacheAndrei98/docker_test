@@ -24,7 +24,7 @@ Then it worked fine.
 
 ## Commands Used
 ```bash
-docker build -t day1-task1 .
+docker run -p 8080:80 day1-task
 docker build -t day1-task1 .
 ```
 
