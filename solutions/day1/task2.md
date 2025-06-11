@@ -12,7 +12,7 @@ I also added the following:
 "
 EXPOSE 80
 "
-This is more for documentatians sake, since the "EXPOSE 80" does not directly do anything.
+This is more for documentatian, since the "EXPOSE 80" does not directly do anything.
 
 ## Commands Used
 ```bash
@@ -22,4 +22,4 @@ docker run -p 8080:80 day1-task2
 ```
 
 ## Lessons Learned
-Ports inside the container need to be correctly map to outside the container in order to reach the service/app.
+Ports inside the container need to be correctly mapped to the outside of the container in order for us to reach the service/app.

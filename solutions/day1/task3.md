@@ -12,7 +12,7 @@ ModuleNotFoundError: No module named 'flask'
 ## Solution
 I could see that the error mentions this:
 "
-  File "/app/app.py", line 1, in <module>
+File "/app/app.py", line 1, in <module>
     from flask import Flask
 ModuleNotFoundError: No module named 'flask'
 "
@@ -66,4 +66,4 @@ docker run -p 5000:5000 day1-task3
 ```
 
 ## Lessons Learned
-I learned that when building a Dockerfile we must take into account all the dependecies that are needed in order for the container to run.
+I learned that when building a Dockerfile we must take into account all the dependecies that are needed in order for the app inside the container to run properly.
