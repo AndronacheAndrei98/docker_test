@@ -1,0 +1,14 @@
+{
+  "name": "docker-debug-day3",
+  "version": "1.0.0",
+  "description": "Docker debugging task - multi-container app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.7.1"
+  }
+} 

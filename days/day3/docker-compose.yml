@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  web:
+    build: ./web
+    ports:
+      - "8080:3000"
+    environment:
+      - DATABASE_HOST=postgres  # Correct name but wrong port
+      - DATABASE_PORT=3306      # Wrong port (should be 5432)
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=app_db
+    # Missing depends_on directive
+    # depends_on:
+    #   - db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  
+  db:
+    # Wrong service name - should be "db" instead of "postgres" to match env var
+    container_name: postgres
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=app_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    # Using default port 5432
+
+# Missing networks section to define a bridge network
+# networks:
+#   default:
+#     driver: bridge
+
+volumes:
+  postgres_data: 
