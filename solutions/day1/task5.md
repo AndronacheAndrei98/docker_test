@@ -40,5 +40,5 @@ docker run -p 8080:8080 day1-task5
 ```
 
 ## Lessons Learned
-I learned that we should check that all required files are present in the build folder when we are building a Dockerfile
+I learned that we should check that all required files are present in the build folder when we are building a Dockerfile.
 I also learned that most errors in Docker tell me exactly what the issue is if I look.
