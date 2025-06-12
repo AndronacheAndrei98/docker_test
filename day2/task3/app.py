@@ -6,7 +6,7 @@ def main():
     print("Starting application...")
     print("This application will consume memory until it crashes")
     print("To fix it, you need to run the container with memory limits")
-    print("For example: docker run --memory=100m day2-task3")
+    print("Figure out how")
     print("\nStarting memory consumption in 5 seconds...")
     time.sleep(5)
     
@@ -22,8 +22,8 @@ def main():
             else:
                 print(f"Memory limit detected: {memory_limit / (1024*1024):.2f} MB")
                 
-                # If memory limit is reasonable, don't crash
-                if memory_limit < 200 * 1024 * 1024:  # Less than 200MB
+                
+                if memory_limit < 200 * 1024 * 1024:  
                     print("\n" + "="*50)
                     print("SUCCESS! You've set appropriate memory limits!")
                     print("The container now runs without crashing.")
@@ -35,8 +35,34 @@ def main():
                         print("Still running...")
                     return
     except Exception as e:
-        print(f"Could not detect memory limits: {e}")
-        print("Continuing with memory consumption test...")
+        print(f"Could not detect cgroup v1 memory limits: {e}")
+        
+        # Try cgroup v2 path
+        try:
+            with open('/sys/fs/cgroup/memory.max', 'r') as f:
+                content = f.read().strip()
+                # cgroup v2 may return "max" for unlimited
+                if content != "max":
+                    memory_limit = int(content)
+                    host_memory = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
+                    
+                    print(f"Detected cgroup v2 memory limit: {memory_limit / (1024*1024):.2f} MB")
+                    
+                    
+                    if memory_limit < 200 * 1024 * 1024:  
+                        print("\n" + "="*50)
+                        print("SUCCESS! You've set appropriate memory limits!")
+                        print("The container now runs without crashing.")
+                        print("="*50 + "\n")
+                        
+                        print("Application running normally...")
+                        while True:
+                            time.sleep(10)
+                            print("Still running...")
+                        return
+        except Exception as e:
+            print(f"Could not detect cgroup v2 memory limits: {e}")
+            print("Continuing with memory consumption test...")
     
     # If we get here, we'll consume memory until crash
     memory_hog = []
