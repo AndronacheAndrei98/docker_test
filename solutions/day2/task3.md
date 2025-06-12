@@ -43,14 +43,16 @@ Allocated 18110.00 MB of memory
 Allocated 18120.00 MB of memory
 Allocated 18130.00 MB of memory
 ```
+```bash
+PS C:\Users\ZZ03GR826\Documents\GitHub\docker_test> docker exec -it test cat /sys/fs/cgroup/memory.max
+157286400
+```
 
 ## Solution
 The solution is to use docker resource constraints like this:
 ```bash
 docker run --memory=150m day2-task3
 ```
-
-After that it did not crash anymore.
 There are multiple constraints documented here: https://docs.docker.com/engine/containers/resource_constraints/
 
 There was also an issue regarding the python script itself.
