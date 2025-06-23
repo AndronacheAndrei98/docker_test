@@ -21,8 +21,8 @@
    Solution:
    I removed it since it did not do anything.
 
-3. Issue:
-Missing "depends_on" attribute as mentioned in the comments of the file. Compose always starts and stops containers in dependency order(https://docs.docker.com/compose/how-tos/startup-order/).
+3. Extra additions:
+Added "depends_on" attribute. This is so compose always starts and stops containers in dependency order(https://docs.docker.com/compose/how-tos/startup-order/).
 
    Solution:
 Added the following to the Docker compose file:
@@ -32,10 +32,7 @@ Added the following to the Docker compose file:
    ```
 This is not required, but it is useful because it makes sure the "db" service is started first before starting the "web" service
 
-4. Issue:
-Requirements mention a network issue, but the compose file works fine with the default network.
-
-   Solution:
+4. Extra additions:
 Created a custom bridge network called app-network and assigned both services to it for proper container communication so that the containers work, but do not use the default network, reflecting a more realistic approach.
 Each network got the following line
    ```bash
@@ -47,11 +44,11 @@ And we created the following network:
    app-network:
       driver: bridge
    ```
-This is not required, but again it reflects a more "similar to onprem" approach.
+This is not required, since it worked fine with the default network, but again it reflects a more "similar to onprem" approach.
 
-5. Issue:
-Issue is mentioned about volumes, but they work fine.
-Issue is mentioned about logging, but logging works fine as well.
+5. Extra additions:
+Checking that volumes work fine.
+Checking that volumes work fine as well.
 Added adminer service to connect to database and test the persistent volume by changing the values in the list:
    ```bash
  adminer:
